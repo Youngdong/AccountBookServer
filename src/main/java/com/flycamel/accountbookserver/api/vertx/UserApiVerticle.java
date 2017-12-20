@@ -6,9 +6,9 @@ import com.flycamel.accountbookserver.domain.service.UserService;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpHeaders;
 import io.vertx.core.json.Json;
-import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
+import io.vertx.ext.web.handler.BodyHandler;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -29,11 +29,24 @@ public class UserApiVerticle extends AbstractVerticle {
     public void start() throws Exception {
         Router router = Router.router(vertx);
 
+        router.route().handler(BodyHandler.create());
         router.get("/user/getAllUser").handler(this::getAllUser);
+        router.post("/user/getUser").handler(this::getUser);
 
         vertx.createHttpServer()
                 .requestHandler(router::accept)
                 .listen(8081);
+    }
+
+    private void getUser(RoutingContext routingContext) {
+        Long id = Long.parseLong(routingContext.request().getParam("id"));
+
+        User user = userService.getUser(id);
+        UserInfo userInfo = getUserInfoFromUser(user);
+
+        routingContext.response()
+                .putHeader(HttpHeaders.CONTENT_TYPE, "application/json")
+                .end(Json.encode(userInfo));
     }
 
     private void getAllUser(RoutingContext routingContext) {

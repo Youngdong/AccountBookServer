@@ -2,30 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14e691fd-c2f8-4c72-bc43-dbae88476550" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_3_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_validation_validation_api_1_1_0_Final.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_8_5_23.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_8_5_23.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_8_5_23.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_tomcat_annotations_api_8_5_23.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_validator_5_3_6_Final.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_1_5_9_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_1_5_9_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_4_3_13_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/flycamel/accountbookserver/api/controller/UserController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/flycamel/accountbookserver/api/dto/UserInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/flycamel/accountbookserver/api/vertx/UserApiVerticle.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/flycamel/accountbookserver/domain/model/User.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/flycamel/accountbookserver/domain/repository/UserRepository.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/flycamel/accountbookserver/domain/service/UserService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/flycamel/accountbookserver/domain/service/UserServiceImpl.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/flycamel/AccountBookServer/AccountBookServerApplication.java" afterPath="$PROJECT_DIR$/src/main/java/com/flycamel/accountbookserver/AccountBookServerApplication.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/java/com/flycamel/AccountBookServer/AccountBookServerApplicationTests.java" afterPath="$PROJECT_DIR$/src/test/java/com/flycamel/accountbookserver/AccountBookServerApplicationTests.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountBookServer.iml" afterPath="$PROJECT_DIR$/AccountBookServer.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.yml" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/flycamel/accountbookserver/api/vertx/UserApiVerticle.java" afterPath="$PROJECT_DIR$/src/main/java/com/flycamel/accountbookserver/api/vertx/UserApiVerticle.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -77,12 +54,12 @@
       <file leaf-file-name="UserApiVerticle.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/flycamel/accountbookserver/api/vertx/UserApiVerticle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="45" column="33" lean-forward="true" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+            <state relative-caret-position="375">
+              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#766#767#0" expanded="true" />
-                <element signature="e#812#813#0" expanded="true" />
+                <element signature="e#773#774#0" expanded="true" />
+                <element signature="e#819#820#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -554,12 +531,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1513749523380</updated>
-      <workItem from="1513749524484" duration="7276000" />
+      <workItem from="1513749524484" duration="8682000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7276000" />
+    <option name="totallyTimeSpent" value="8682000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2556" height="1417" extended-state="0" />
@@ -652,7 +629,7 @@
         <state relative-caret-position="120">
           <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -750,12 +727,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/flycamel/accountbookserver/api/vertx/UserApiVerticle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="45" column="33" lean-forward="true" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+        <state relative-caret-position="375">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#766#767#0" expanded="true" />
-            <element signature="e#812#813#0" expanded="true" />
+            <element signature="e#773#774#0" expanded="true" />
+            <element signature="e#819#820#0" expanded="true" />
           </folding>
         </state>
       </provider>
