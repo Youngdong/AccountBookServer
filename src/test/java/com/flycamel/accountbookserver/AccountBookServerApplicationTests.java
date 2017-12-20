@@ -1,4 +1,4 @@
-package com.flycamel.AccountBookServer;
+package com.flycamel.accountbookserver;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
