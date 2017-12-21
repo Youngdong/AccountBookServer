@@ -3,6 +3,7 @@ package com.flycamel.accountbookserver.api.controller;
 import com.flycamel.accountbookserver.api.dto.UserInfo;
 import com.flycamel.accountbookserver.domain.model.User;
 import com.flycamel.accountbookserver.domain.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value = "/user")
+@Slf4j
 public class UserController {
 
     private UserService userService;
@@ -22,6 +24,13 @@ public class UserController {
     @Resource
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    @ResponseBody
+    public String welcomeUser() {
+        log.debug("welcomeUser start...");
+        return "welcome";
     }
 
     @RequestMapping(value = "/getUser", method = RequestMethod.POST)

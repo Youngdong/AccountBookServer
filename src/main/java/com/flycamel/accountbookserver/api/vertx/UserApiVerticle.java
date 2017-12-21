@@ -9,6 +9,7 @@ import io.vertx.core.json.Json;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class UserApiVerticle extends AbstractVerticle {
 
     private UserService userService;
@@ -30,12 +32,20 @@ public class UserApiVerticle extends AbstractVerticle {
         Router router = Router.router(vertx);
 
         router.route().handler(BodyHandler.create());
+        router.get("/user").handler(this::welcomeUser);
         router.get("/user/getAllUser").handler(this::getAllUser);
         router.post("/user/getUser").handler(this::getUser);
 
         vertx.createHttpServer()
                 .requestHandler(router::accept)
                 .listen(8081);
+    }
+
+    private void welcomeUser(RoutingContext routingContext) {
+        log.debug("welcomeUser start...");
+        routingContext.response()
+                .putHeader(HttpHeaders.CONTENT_TYPE, "application/json")
+                .end(Json.encode("welcome"));
     }
 
     private void getUser(RoutingContext routingContext) {
