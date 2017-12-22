@@ -25,7 +25,6 @@
 		<spring-cloud.version>Edgware.RELEASE</spring-cloud.version>
 		<vertx.version>3.5.0</vertx.version>
 		<lombok.version>1.16.18</lombok.version>
-		<hazelcast.version>3.8.1</hazelcast.version>
 	</properties>
 
 	<dependencies>
