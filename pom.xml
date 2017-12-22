@@ -25,9 +25,7 @@
 		<spring-cloud.version>Edgware.RELEASE</spring-cloud.version>
 		<vertx.version>3.5.0</vertx.version>
 		<lombok.version>1.16.18</lombok.version>
-		<mysql.connector.version>5.1.44</mysql.connector.version>
-		<ignite.version>2.3.0</ignite.version>
-		<ignite-hibernate.version>2.3.1</ignite-hibernate.version>
+		<hazelcast.version>3.8.1</hazelcast.version>
 	</properties>
 
 	<dependencies>
@@ -83,13 +81,6 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.16.18</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
 			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
@@ -97,7 +88,30 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.connector.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hazelcast</groupId>
+			<artifactId>hazelcast</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.hazelcast</groupId>
+			<artifactId>hazelcast-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.hazelcast</groupId>
+			<artifactId>hazelcast-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.hazelcast</groupId>
+			<artifactId>hazelcast-hibernate5</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.0.9.Final</version>
 		</dependency>
 	</dependencies>
 

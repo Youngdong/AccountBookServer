@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: AccountBook
   datasource:
     url: jdbc:mysql://localhost:3306/AccountBook
     username: root
@@ -15,8 +17,21 @@ spring:
         id:
           new_generator_mappings: false
         format_sql: true
+        cache:
+          use_second_level_cache: true
+          use_query_cache: true
+          hazelcast:
+            instance_name: hazelcastCache
+            use_native_client: true
+            native_client_address: localhost:5701
+            native_client_group: dev
+            native_client_password: dev-pass
+          region:
+            factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
+        generate_statistics: true
 
 logging:
   level:
+    com.hazelcast: DEBUG
     org.hibernate:
       SQL: DEBUG

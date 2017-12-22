@@ -41,6 +41,14 @@ public class UserController {
         return getUserInfoFromUser(user);
     }
 
+    @RequestMapping(value = "/getUserByName", method = RequestMethod.POST)
+    @ResponseBody
+    public UserInfo getUserByName(@RequestParam String name) {
+        User user = userService.getUserByName(name);
+
+        return getUserInfoFromUser(user);
+    }
+
     @RequestMapping(value = "/getAllUser", method = RequestMethod.GET)
     @ResponseBody
     public List<UserInfo> getAllUser() {
