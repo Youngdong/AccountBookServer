@@ -18,13 +18,6 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<repositories>
-		<repository>
-			<id>localrepository</id>
-			<url>file://${basedir}/repo</url>
-		</repository>
-	</repositories>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -105,24 +98,6 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.connector.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.ignite</groupId>
-			<artifactId>ignite-core</artifactId>
-			<version>${ignite.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.ignite</groupId>
-			<artifactId>ignite-spring</artifactId>
-			<version>${ignite.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.ignite</groupId>
-			<artifactId>ignite-hibernate_5.1</artifactId>
-			<version>${ignite-hibernate.version}</version>
 		</dependency>
 	</dependencies>
 
