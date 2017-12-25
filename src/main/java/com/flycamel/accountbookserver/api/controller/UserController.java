@@ -4,17 +4,13 @@ import com.flycamel.accountbookserver.api.dto.UserInfo;
 import com.flycamel.accountbookserver.domain.model.User;
 import com.flycamel.accountbookserver.domain.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Controller
+@RestController
 @RequestMapping(value = "/user")
 @Slf4j
 public class UserController {
@@ -26,14 +22,13 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    @ResponseBody
+    @GetMapping(value = "")
     public String welcomeUser() {
         log.debug("welcomeUser start...");
         return "welcome";
     }
 
-    @RequestMapping(value = "/getUser", method = RequestMethod.POST)
+    @PostMapping(value = "/getUser")
     @ResponseBody
     public UserInfo getUser(@RequestParam Long id) {
         User user = userService.getUser(id);
@@ -41,7 +36,7 @@ public class UserController {
         return getUserInfoFromUser(user);
     }
 
-    @RequestMapping(value = "/getUserByName", method = RequestMethod.POST)
+    @PostMapping(value = "/getUserByName")
     @ResponseBody
     public UserInfo getUserByName(@RequestParam String name) {
         User user = userService.getUserByName(name);
@@ -49,7 +44,7 @@ public class UserController {
         return getUserInfoFromUser(user);
     }
 
-    @RequestMapping(value = "/getAllUser", method = RequestMethod.GET)
+    @GetMapping(value = "/getAllUser")
     @ResponseBody
     public List<UserInfo> getAllUser() {
         List<User> userList = userService.getAllUser();
