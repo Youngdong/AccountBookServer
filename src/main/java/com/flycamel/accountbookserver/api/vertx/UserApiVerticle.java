@@ -6,9 +6,15 @@ import com.flycamel.accountbookserver.domain.service.UserService;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpHeaders;
 import io.vertx.core.json.Json;
+import io.vertx.ext.web.Cookie;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
+import io.vertx.ext.web.Session;
 import io.vertx.ext.web.handler.BodyHandler;
+import io.vertx.ext.web.handler.CookieHandler;
+import io.vertx.ext.web.handler.SessionHandler;
+import io.vertx.ext.web.sstore.LocalSessionStore;
+import io.vertx.ext.web.sstore.SessionStore;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +35,13 @@ public class UserApiVerticle extends AbstractVerticle {
 
     @Override
     public void start() throws Exception {
+        SessionStore sessionStore = getSessionStore();
+        SessionHandler sessionHandler = SessionHandler.create(sessionStore);
+
         Router router = Router.router(vertx);
 
+        router.route().handler(CookieHandler.create());
+        router.route().handler(sessionHandler);
         router.route().handler(BodyHandler.create());
         router.get("/user").handler(this::welcomeUser);
         router.get("/user/getAllUser").handler(this::getAllUser);
@@ -41,8 +52,24 @@ public class UserApiVerticle extends AbstractVerticle {
                 .listen(8081);
     }
 
+    private LocalSessionStore getSessionStore() {
+        return LocalSessionStore.create(vertx, "AccountBook", 600000);
+    }
+
     private void welcomeUser(RoutingContext routingContext) {
         log.debug("welcomeUser start...");
+
+        Session session = routingContext.session();
+        log.info("session id :" + session.id());
+
+        String testValue = session.get("test");
+        if (testValue != null) {
+            log.info("session test value: {}", testValue);
+        } else {
+            log.info("add session test value...");
+            session.put("test", "testValue");
+        }
+
         routingContext.response()
                 .putHeader(HttpHeaders.CONTENT_TYPE, "application/json")
                 .end(Json.encode("welcome"));
