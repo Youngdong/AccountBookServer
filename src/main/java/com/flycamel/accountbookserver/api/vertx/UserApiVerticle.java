@@ -6,13 +6,15 @@ import com.flycamel.accountbookserver.domain.service.UserService;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpHeaders;
 import io.vertx.core.json.Json;
-import io.vertx.ext.web.Cookie;
+import io.vertx.core.json.JsonObject;
+import io.vertx.ext.auth.KeyStoreOptions;
+import io.vertx.ext.auth.jwt.JWTAuth;
+import io.vertx.ext.auth.jwt.JWTAuthOptions;
+import io.vertx.ext.auth.jwt.JWTOptions;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.Session;
-import io.vertx.ext.web.handler.BodyHandler;
-import io.vertx.ext.web.handler.CookieHandler;
-import io.vertx.ext.web.handler.SessionHandler;
+import io.vertx.ext.web.handler.*;
 import io.vertx.ext.web.sstore.LocalSessionStore;
 import io.vertx.ext.web.sstore.SessionStore;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +28,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class UserApiVerticle extends AbstractVerticle {
 
+    private JWTAuth jwtAuth;
+
     private UserService userService;
 
     @Resource
@@ -38,18 +42,39 @@ public class UserApiVerticle extends AbstractVerticle {
         SessionStore sessionStore = getSessionStore();
         SessionHandler sessionHandler = SessionHandler.create(sessionStore);
 
+        JWTAuthOptions options = new JWTAuthOptions()
+                .setKeyStore(new KeyStoreOptions()
+                        .setPath("/Users/Youngdong/IdeaProjects/AccountBookServer/src/main/resources/keystore/keystore.jceks")
+                        .setPassword("0dong2"));
+        jwtAuth = JWTAuth.create(vertx, options);
+
         Router router = Router.router(vertx);
 
         router.route().handler(CookieHandler.create());
         router.route().handler(sessionHandler);
         router.route().handler(BodyHandler.create());
-        router.get("/user").handler(this::welcomeUser);
+        router.route("/user/*").handler(JWTAuthHandler.create(jwtAuth, "/login"));
+
+        router.post("/login").handler(this::login);
+        //router.get("/user").handler(this::welcomeUser);
         router.get("/user/getAllUser").handler(this::getAllUser);
         router.post("/user/getUser").handler(this::getUser);
 
         vertx.createHttpServer()
                 .requestHandler(router::accept)
                 .listen(8081);
+    }
+
+    private void login(RoutingContext routingContext) {
+        String username = routingContext.request().getParam("username");
+        String password = routingContext.request().getParam("password");
+
+        if ("yd".equals(username) && "1234".equals(password)) {
+            String token = jwtAuth.generateToken(new JsonObject().put("userId", 1).put("role", "USER"), new JWTOptions());
+            routingContext.response().putHeader(HttpHeaders.AUTHORIZATION, "Bearer " + token).end("OK");
+        } else {
+            routingContext.response().setStatusCode(401).end("Wrong username or password");
+        }
     }
 
     private LocalSessionStore getSessionStore() {
@@ -76,8 +101,10 @@ public class UserApiVerticle extends AbstractVerticle {
     }
 
     private void getUser(RoutingContext routingContext) {
-        Long id = Long.parseLong(routingContext.request().getParam("id"));
+        io.vertx.ext.auth.User authUser = routingContext.user();
+        log.info("authUser : {}", authUser.toString());
 
+        Long id = Long.parseLong(routingContext.request().getParam("id"));
         User user = userService.getUser(id);
         UserInfo userInfo = getUserInfoFromUser(user);
 
